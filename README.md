@@ -1,18 +1,21 @@
-# Cloudflare Dynamic DNS IP Updater
-<img alt="GitHub" src="https://img.shields.io/github/license/K0p1-Git/cloudflare-ddns-updater?color=black"> <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/K0p1-Git/cloudflare-ddns-updater/main"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/K0p1-Git/cloudflare-ddns-updater">
+# Cloudflare Dynamic DNS IP Updater Enhancement
+
+<img alt="GitHub" src="https://img.shields.io/github/license/openwrtbuild/cloudflare-ddns-enhancement?color=black"> <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/openwrtbuild/cloudflare-ddns-enhancement/main"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/openwrtbuild/cloudflare-ddns-enhancement">
 
 This script is used to update Dynamic DNS (DDNS) service based on Cloudflare! Access your home network remotely via a custom domain name without a static IP! Written in pure BASH.
 
 ## Support Me
-[![Donate Via Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/Jasonkkf)
+
+
 
 ## Installation
 
 ```bash
-git clone https://github.com/K0p1-Git/cloudflare-ddns-updater.git
+git clone https://github.com/openwrtbuild/cloudflare-ddns-enhancement.git
 ```
 
 ## Usage
+
 This script is used with crontab. Specify the frequency of execution through crontab.
 
 ```bash
@@ -27,16 +30,37 @@ This script is used with crontab. Specify the frequency of execution through cro
 # * * * * * /bin/bash {Location of the script}
 ```
 
+## Enhancement
+
+1. Add $1 as ip. (Easy to use it manually.)
+
+   ```bash
+   ./cloudflare-ddns.sh x.x.x.x
+   # or ./cloudflare-ddnsv6.sh ipv6_address_value
+   ```
+
+2. Support only when local ip changes, does it check and update record on Cloudflare.  (Reduce the times calling api of Cloudflare and make it faster). Configure last_ipv4_info or last_ipv6_info to use this function.
+
+3. When the dns record is new, it can be created automatically by setting auto_create to true. (new function: create dns record)
+
+4. Modify log head including PID. When to use crontab (e.g. per minute), it is more convenient for logs. (Optimise log record for crontab per minute)
+
+5. Support multiple records. (set record_names with the record separated by space if there are multiple record name)
+
+6. ...
+
 ## Tested Environments:
-macOS Mojave version 10.14.6 (x86_64) <br />
-AlmaLinux 9.3 (Linux kernel: 5.14.0 | x86_64) <br />
-Debian Bullseye 11 (Linux kernel: 6.1.28 | aarch64) <br />
+
+CentOS 7.9 (Linux kernel: 5.9.0 | aarch64) 
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Reference
-This script was made with reference from [Keld Norman](https://www.youtube.com/watch?v=vSIBkH7sxos) video.
+
+This script was made with reference from [cloudflare-ddns-updater](https://github.com/K0p1-Git/cloudflare-ddns-updater) repo.
 
 ## License
-[MIT](https://github.com/K0p1-Git/cloudflare-ddns-updater/blob/main/LICENSE)
+
+[MIT](https://github.com/openwrtbuild/cloudflare-ddns-enhancement/blob/main/LICENSE)
